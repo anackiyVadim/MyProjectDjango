@@ -1,0 +1,51 @@
+{% extends "firstApp/base.html" %}
+
+{% block content%}
+
+
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="{% url 'index' %}">
+                            Главная
+                        </a>
+                    </li>
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="#">
+                            Регистрация
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="reg">
+            <div class="container">
+                <div class="reg__wrapp">
+                    <h3 class="reg__head">Регистрация</h3>
+                    <form method="POST" enctype="multipart/form-data" class="reg__form">
+                        {% csrf_token %}
+<!--                        {{ form.as_p }}-->
+                        <div class="reg__input-mask far fa-user">
+                            <input required name="username" class="reg__input" placeholder="Имя" type="text" >
+                        </div>
+                        <div class="reg__input-mask far fa-envelope">
+                            <input name="email" class="reg__input" placeholder="Эл. почта" type="email" >
+                        </div>
+                        <div class="reg__input-mask fas fa-lock">
+                            <input required name="password" class="reg__input" placeholder="Пароль" type="password" >
+                        </div>
+                        <div class="reg__input-mask fas fa-phone-alt">
+                            <input required name="phone" class="reg__input" placeholder="Телефон" type="tel" >
+                        </div>
+                        <div class="reg__input-mask fas fa-lock">
+                            <input name="password2" class="reg__input" placeholder="Пароль" type="password" >
+                        </div>
+                        <button class="reg__submit" value="Зарегистрироваться" type="submit" >Зарегистрироваться</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "firstApp/base.html" %}
+
+{% block content%}
+<div class="breadcrumbs">
+            <div class="container">
+                <ul class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="/">
+                            Главная
+                        </a>
+                    </li>
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="../contact">
+                            Новости
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <section class="news">
+        <div class="container">
+           <h3 class="news__head">Новости</h3>
+           <div class="news__content-wrapp">
+               {% for news in news %}
+               <a href="{% url 'newsPost' id=news.id title=news.title %}" class="news__content-inner">
+                   <img src="{{ news.image.url }}" alt="" class="news__content-images">
+                   <h4 class="news__content-head">{{ news.title }}</h4>
+                   <p class="news__content-text">{{ news.disc }}</p>
+                   <span class="news__content-date">{{ news.published_date }}</span>
+               </a>
+               {% endfor %}
+           </div>
+        </div>
+        </section>
+
+{% endblock %}

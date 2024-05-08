@@ -1,0 +1,98 @@
+{% extends "firstApp/base.html" %}
+
+{% block content%}
+
+        <section class="catalog">
+            <div class="container">
+                <h3 class="catalog__head">
+                    {{c.name}}
+                    {{ c_с.name }}
+                </h3>
+                <ul class="catalog__list">
+                    <li class="catalog__list-item">
+                        <button class="catalog__inner-btn fas fa-chevron-down">Фильтр</button>
+                        <ul class="catalog__list-inner">
+                            <li class="catalog__list-item-inner">
+                                <button id="sort-cheap" class="catalog__inner-btn">Дешевле</button>
+                            </li>
+                            <li class="catalog__list-item-inner">
+                                <button id="sort-expensive" class="catalog__inner-btn">Дороже</button>
+                            </li>
+                            <li class="catalog__list-item-inner">
+                                <button id="sort-rating" class="catalog__inner-btn">По рейтингу</button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="catalog__content">
+                    <div class="catalog__content-category">
+                        {% for teg in teg %}
+                            {% if request.path == "/catalog/"|add:c_с.name %}
+                                {% if c_с.category == teg.category %}
+                                    <a href="{% url 'catalog' name=teg.name %}" class="catalog__link-category">{{ teg.name }}</a>
+                                {% endif %}
+                            {% else %}
+                                <a href="{% url 'catalog' name=teg.name %}" class="catalog__link-category">{{ teg.name }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="catalog__products">
+                        {% for productGiro in product %}
+                                {% include "firstApp/miniProductCart.html" %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% include "firstApp/pagination.html" with page=product %}
+            </div>
+        </section>
+
+
+<script>
+    {% if "/catalog/" in request.path %}
+        document.addEventListener('DOMContentLoaded', function() {
+        {% if request.path == "/catalog/"|add:c.name %}
+        document.getElementById('sort-cheap').addEventListener('click', function() {
+            window.location.href = "{% url 'catalog' name=c.name %}?order_by=newPrice";
+        });
+
+        document.getElementById('sort-expensive').addEventListener('click', function() {
+            window.location.href = "{% url 'catalog' name=c.name %}?order_by=-newPrice";
+        });
+
+        document.getElementById('sort-rating').addEventListener('click', function() {
+            window.location.href = "{% url 'catalog' name=c.name %}?order_by=-rayting";
+        });
+        {% else %}
+            document.getElementById('sort-cheap').addEventListener('click', function() {
+            window.location.href = "{% url 'catalog' name=c_с.name %}?order_by=newPrice";
+        });
+
+        document.getElementById('sort-expensive').addEventListener('click', function() {
+            window.location.href = "{% url 'catalog' name=c_с.name %}?order_by=-newPrice";
+        });
+
+        document.getElementById('sort-rating').addEventListener('click', function() {
+            window.location.href = "{% url 'catalog' name=c_с.name %}?order_by=-rayting";
+        });
+        {% endif %}
+    {% endif %}
+     {% if "/search" in request.path %}
+        document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('sort-cheap').addEventListener('click', function() {
+            window.location.href = "{% url 'search' %}?query={{ query }}&order_by=newPrice";
+        });
+
+        document.getElementById('sort-expensive').addEventListener('click', function() {
+            window.location.href = "{% url 'search' %}?query={{ query }}&order_by=-newPrice";
+        });
+
+        document.getElementById('sort-rating').addEventListener('click', function() {
+            window.location.href = "{% url 'search' %}?query={{ query }}&order_by=-rayting";
+        });
+    {% endif %}
+});
+
+</script>
+
+
+{% endblock %}

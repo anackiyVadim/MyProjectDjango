@@ -1,0 +1,61 @@
+{% extends "firstApp/base.html" %}
+{% block content %}
+<div class="container">
+    <style>
+        .order-form{
+            max-width: 600px;
+        }
+        .input-group{
+            margin-bottom: 10px;
+            grid-gap: 10px;
+        }
+    </style>
+    <h1>Заявка:</h1>
+    <div class="d-flex">
+        <div class="p-2 w-100">
+            <form action="." method="POST" class="order-form">
+                {% csrf_token %}
+<!--                {{ formUser.as_p }}-->
+                    <div class="input-group flex-nowrap">
+                        <select hidden="hidden" name="user" required="" aria-invalid="true" id="id_user">
+                          <option value="">---------</option>
+                          <option value="1" selected>{{ user.username }}</option>
+                        </select>
+                        <p>Имя: {{ user.username }}</p>
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <p>Email: {{ user.email }}</p>
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <p>Адрес: {{ user.profile.address }}</p>
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <p>Почтовый индекс: {{ user.profile.mail_index }}</p>
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <p>Город: {{ user.profile.city }}</p>
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <p>Телефон: {{ user.profile.phone }}</p>
+                    </div>
+                    <p style="color: red; font-size: 11px;">Для размещения заказа обязательно заполните данные профиля</p>
+                <button type="submit" class="btn btn-success">Разместить заказ</button>
+            </form>
+        </div>
+        <div class="p-2 flex-shrink-1">
+            <div class="order-info card">
+            <h3 class="card-header">Ваш заказ</h3>
+            <ul class="list-group">
+                {% for item in cart %}
+                    <li class="list-group-item card-text">
+                        {{ item.quantity }}x {{ item.product.name }}
+                        <p class="text-end">${{ item.total_price }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p>Всего: ${{ cart.get_total_price }}</p>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

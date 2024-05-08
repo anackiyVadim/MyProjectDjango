@@ -1,0 +1,241 @@
+{% extends "firstApp/base.html" %}
+
+{% block content%}
+<style>
+    .exit__link:hover{
+        color: #fff;
+    }
+    .exit__link{
+        display: inline-block;
+        color: #000;
+        width:100%;
+    }
+</style>
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="{% url 'index' %}">
+                            Главная
+                        </a>
+                    </li>
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="#">
+                            Личный кабинет
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <section class="account">
+            <div class="container">
+                <h3 class="account__head">Личный кабинет</h3>
+                <div class="account__wrapp">
+                    <div class="account__nav-bar">
+                        <button class="account__btn account__btn-general account__btn-active">Общие сведения</button>
+                        <button class="account__btn account__btn-personal">Личные данные</button>
+                        <button class="account__btn account__btn-history">История покупок</button>
+                        <button class="account__btn account__btn-order">Избранные товары</button>
+                        <button class="account__btn account__btn-password">Сменить пароль</button>
+                        <a href="{% url 'account_logout' %}" class="exit__link account__btn">Выйти</a>
+                    </div>
+                    <div class="account__box-inf">
+                        <div class="account__general account__active-wrapp">
+                            <h4 class="account__general-name">{{user.username}}</h4>
+                            <div class="account__general-top-box">
+                                <img height="101px" width="101px" class="account__general-images" src="{{ user.profile.avatar.url }}" alt="icon" >
+                                <div class="account__general-wrapp">
+                                    <span class="account__general-date">Дата регистрации: <span class="account__general-date-numb">{{ user.date_joined }}</span></span>
+                                    <span class="account__general-orders"> Заказов: <span class="account__general-orders-numb"> 1</span></span>
+                                </div>
+                            </div>
+                            <p class="account__general-text">
+                                Добро пожаловать в панель управления. Здесь вы можете <a href="#" class="account__general-link">изменить свои регистрационные данные</a> и <a href="#" class="account__general-link">cменить пароль</a>. Зарегистрированные пользователи имеют доступ к <a href="#" class="account__general-link">истории заказов</a> и возможность <a href="#" class="account__general-link">добавлять в избранное товары для будущих покупок.</a>
+                            </p>
+                            <button class="account__general-controlPanel">Панель управления</button>
+                        </div>
+                        <div class="account__personal">
+                            <form method="POST" class="account__personal-form">
+                                {% csrf_token %}
+<!--                                {{ update_form.as_p }}-->
+                                <div class="account__personal-wrapp">
+                                    <p class="account__personal-text">Имя</p>
+                                    <input name="username" type="text" value="{{ user_Info.user.username }}" class="account__personal-input">
+                                </div>
+                                <div class="account__personal-wrapp">
+                                    <p class="account__personal-text">Адрес</p>
+                                    <input name="address" type="text" placeholder="Не указан" value="{{ user_Info.address }}" class="account__personal-input">
+                                </div>
+                                <div class="account__personal-wrapp">
+                                    <p class="account__personal-text">Эл. почта</p>
+                                    <input name="email" type="email" value="{{ user_Info.user.email }}" class="account__personal-input">
+                                </div>
+                                <div class="account__personal-wrapp">
+                                    <p class="account__personal-text">Предпочитаемый способ оплаты</p>
+                                    {% if user_Info.preferredPaymentMethod.method == 'Карта' %}
+                                    <select name="preferredPaymentMethod" class="account__personal-input" name="select" size="1">
+                                        <option style="display: none; color: #828282;" value >Не указан</option>
+                                        <option value="1">Наличка</option>
+                                        <option value="2" selected>Карта</option>
+                                    </select>
+                                    {% elif user_Info.preferredPaymentMethod.method == 'Наличка' %}
+                                    <select name="preferredPaymentMethod" class="account__personal-input" name="select" size="1">
+                                        <option style="display: none; color: #828282;" value  >Не указан</option>
+                                        <option value="1" selected>Наличка</option>
+                                        <option value="2">Карта</option>
+                                    </select>
+                                    {% else %}
+                                    <select name="preferredPaymentMethod" class="account__personal-input" name="select" size="1">
+                                        <option style="display: none; color: #828282;" value selected >Не указан</option>
+                                        <option value="1" >Наличка</option>
+                                        <option value="2">Карта</option>
+                                    </select>
+                                    {% endif %}
+                                </div>
+                                <div class="account__personal-wrapp">
+                                    <p class="account__personal-text">Телефон</p>
+                                    <input name="phone" type="tel" value="+{{ user_Info.phone }}" class="account__personal-input">
+                                </div>
+                                <div class="account__personal-wrapp">
+                                    <p class="account__personal-text">Предпочитаемый способ доставки</p>
+                                    {% if user_Info.preferredShippingMethod.method == 'Почтовое отделение' %}
+                                    <select  class="account__personal-input" name="preferredShippingMethod" size="1">
+                                        <option style="display: none; color: #828282;" value>Не указан</option>
+                                        <option value="1" >Курьер</option>
+                                        <option value="2" selected >Почтовое отделение</option>
+                                    </select>
+                                    {% elif user_Info.preferredShippingMethod.method == 'Курьер' %}
+                                    <select  class="account__personal-input" name="preferredShippingMethod" size="1">
+                                        <option style="display: none; color: #828282;" value>Не указан</option>
+                                        <option value="1" selected >Курьер</option>
+                                        <option value="2">Почтовое отделение</option>
+                                    </select>
+                                    {% else %}
+                                    <select  class="account__personal-input" name="preferredShippingMethod" size="1">
+                                        <option style="display: none; color: #828282;" selected value>Не указан</option>
+                                        <option value="1">Курьер</option>
+                                        <option value="2">Почтовое отделение</option>
+                                    </select>
+                                    {% endif %}
+                                </div>
+                                <div class="account__personal-wrapp">
+                                    <p class="account__personal-text">Город</p>
+                                    <input name="city" type="tel" placeholder="Не указан" value="{{ user_Info.city }}" class="account__personal-input">
+                                </div>
+                                <div class="account__personal-wrapp">
+                                    <p class="account__personal-text">Аватар</p>
+<!--                                    <img height="101px" width="101px" src="{{ user.profile.avatar.url }}">-->
+                                    <input type="file" name="avatar" class="account__personal-input" accept="image/*" id="id_avatar">
+                                </div>
+                                <div class="account__personal-wrapp">
+                                    <p class="account__personal-text">Индекс</p>
+                                    <input name="mail_index" type="text" value="{{ user_Info.mail_index }}" class="account__personal-input">
+                                </div>
+                                <div class="account__personal-wrapp">
+                                    <input type="submit" value="Сохранить" class="account__personal-submit">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="account__history">
+                            <h3 class="account__history-head">История покупок</h3>
+                            <div class="account__history-wrapp">
+                                <div class="account__history-inner">
+                                    <article class="account__history-inner-box">
+                                        <p class="account__history-p">
+                                            Заказ
+                                            <span class="account__history-numb"> # 2</span>
+                                            от
+                                            <span class="account__history-date">06.06.2021</span>
+                                        </p>
+                                        <p class="account__history-p">
+                                            <span class="account__history-numb">2</span>
+                                             товара на сумму
+                                            <span class="account__history-fullprice">15 600 $</span>
+                                        </p>
+                                        <div class="account__history-progress">
+                                            <p class="account__history-progress-treat">В процессе</p>
+                                            <ul class="account__history-progress-treat-list">
+                                                <li class="account__history-progress-treat-list-item">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                    <ul class="account__history-progress-treat-list-inner">
+                                                        <li class="account__history-progress-treat-list-item-inner">
+                                                            <a href="#" class="account__history-progress-treat-link">Отменить заказ</a>
+                                                        </li>
+                                                        <li class="account__history-progress-treat-list-item-inner">
+                                                            <a href="#" class="account__history-progress-treat-link">Информация по заказу</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </article>
+                                </div>
+                                <div class="account__history-inner">
+                                    <article class="account__history-inner-box">
+                                        <p class="account__history-p">
+                                            Заказ
+                                            <span class="account__history-numb"> # 1</span>
+                                            от
+                                            <span class="account__history-date">06.06.2021</span>
+                                        </p>
+                                        <p class="account__history-p">
+                                            <span class="account__history-numb">1</span>
+                                             товара на сумму
+                                            <span class="account__history-fullprice">3600 $</span>
+                                        </p>
+                                        <div class="account__history-progress">
+                                            <p class="account__history-progress-completed">Выполнен</p>
+                                            <ul class="account__history-progress-completed-list">
+                                                <li class="account__history-progress-completed-list-item">
+                                                    <i class="fas fa-chevron-down"></i>
+                                                    <ul class="account__history-progress-completed-list-inner">
+                                                        <li class="account__history-progress-completed-list-item-inner">
+                                                            <a href="#" class="account__history-progress-completed-link">Информация по заказу</a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="account__order">
+                            <div class="account__order-wrapp-product">
+                                {% for productGiro in productGiro %}
+                                    {% for featured in featuredProducts %}
+                                        {% if productGiro == featured.featuredProducts_Product %}
+                                            {% if user_Info == featured.featuredProducts_User %}
+                                                {% include "firstApp/miniProductCart.html" %}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="account__password">
+                            <form method="POST" class="account__password-form">
+                                {% csrf_token %}
+<!--                                {{ re_pass.as_p }}-->
+                                <div class="account__password-wrapp account__password-wrapp-1">
+                                    <div class="account__password-icon"><i class="fas fa-lock"></i></div>
+                                    <input name="password" type="password" placeholder="Введите старый пароль" required class="account__password-input">
+                                </div>
+                                <div class="account__password-wrapp">
+                                    <div class="account__password-icon"><i class="fas fa-lock"></i></div>
+                                    <input name="password_NewPassword" required type="password" placeholder="Введите новый пароль" class="account__password-input">
+                                </div>
+                                <div class="account__password-wrapp">
+                                    <div class="account__password-icon"><i class="fas fa-lock"></i></div>
+                                    <input name="password_NewPassword2" required type="password" placeholder="Повторите новый пароль" class="account__password-input">
+                                </div>
+                                <div class="account__password-wrapp">
+                                    <input type="submit" value="Сохранить" class="account__password-submit">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

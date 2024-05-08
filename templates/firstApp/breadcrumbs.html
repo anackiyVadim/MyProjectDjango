@@ -1,0 +1,62 @@
+{% if request.path != "/" and request.path != "/contact/" and request.path != "/news/" and request.path != "/registr/" and request.path != "/login_User/" and request.path != "/profile/" %}
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="{% url 'index' %}">
+                            Главная
+                        </a>
+                    </li>
+                    {% if request.path == "/catalog/"|add:c_с.name %}
+                        <li class="breadcrumbs__item">
+                            <a class="breadcrumbs__link" href="{% url 'catalog' name=c_с.category  %}">
+                                {{ c_с.category }}
+                                {{product.category}}
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if "/newsPost/" in request.path %}
+                        <li class="breadcrumbs__item">
+                            <a class="breadcrumbs__link" href="{% url 'news' %}">
+                                Новости
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if '/search' in request.path %}
+                        <li class="breadcrumbs__item">
+                            <a class="breadcrumbs__link" href="#">
+                                Поиск по запросу:
+                            </a>
+                        </li>
+                    {% endif %}
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="#">
+                            {{product.name}}
+                            {{c.name}}
+                            {{c_с.name}}
+                            {{newsPosts.title}}
+                            {{query}}
+                            {% if '/baskCart/' in request.path %}
+                                Корзина
+                            {% endif %}
+                            {% if '/company/' in request.path %}
+                                О компании
+                            {% endif %}
+                            {% if '/services/' in request.path %}
+                                Услуги
+                            {% endif %}
+                            {% if '/serviceRepair/' in request.path %}
+                                Сервис и ремонт
+                            {% endif %}
+                            {% if '/wholesale/' in request.path %}
+                                Опт
+                            {% endif %}
+                            {% if '/faq/' in request.path %}
+                                F.A.Q.
+                            {% endif %}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}

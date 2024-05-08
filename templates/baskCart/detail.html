@@ -1,0 +1,55 @@
+{% extends "firstApp/base.html" %}
+{% block content %}
+<div class="container">
+
+    <h1 class="reg__head">Корзина</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Картинка</th>
+            <th>Название</th>
+            <th>Количество</th>
+            <th>Удалить</th>
+            <th>Цена за единицу</th>
+            <th>Конечная цена</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in baskCart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{% url 'productCart' id=product.pk name=product.name %}">
+                            <img src="{{ product.images.url }}">
+                        </a>
+                    </td>
+                    <td>{{ product.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td><a class="btn btn-danger" href="{% url "baskCart:cart_remove" product.id%}">Удалить</a></td>
+                    <td class="num">${{ item.price }}</td>
+                    <td class="num">${{ item.total_price }}</td>
+                </tr>
+        {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td>Всего</td>
+            <td colspan="4"></td>
+            <td class="num">${{ baskCart.get_total_price }}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url 'index' %}" class="btn btn-primary">Continue shopping</a>
+        {% if user.is_authenticated %}
+        <a href="{% url "orders:order_create_user" %}" class="btn btn-primary">
+            Оформить заказ в один клилк
+        </a>
+        {% else %}
+        <a href="{% url "orders:order_create" %}" class="btn btn-primary">
+            Оформить заказ
+        </a>
+        {% endif %}
+    </p>
+
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "firstApp/base.html" %}
+{% block content %}
+
+
+        <div class="breadcrumbs">
+            <div class="container">
+                <ul class="breadcrumbs__list">
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="/">
+                            Главная
+                        </a>
+                    </li>
+                    <li class="breadcrumbs__item">
+                        <a class="breadcrumbs__link" href="../contact">
+                            Контакты
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="contact">
+            <div class="container">
+                <div class="contact__content">
+                    <div class="contact__inf">
+                        <h4 class="contact__head">Контакты</h4>
+                        <div class="contact__inf-content">
+                            <a href="#" class="contact__tell fas fa-phone-alt">+8 (888) 999-99-99</a>
+                            <a href="#" class="contact__tell fas fa-phone-alt">+8 (888) 999-99-99</a>
+                            <a href="#" class="contact__mail far fa-envelope">contact@etor.ru</a>
+                            <p class="contact__inf-adress fas fa-map-marker-alt">Адрес Лиговский</p>
+                            <p class="contact__inf-text">Украина, Kiev, Лиговский проспект 205</p>
+                            <p class="contact__inf-adress fas fa-map-marker-alt">Адрес Гражданский</p>
+                            <p class="contact__inf-text">Украина, Kiev, Лиговский проспект 205</p>
+                            <div class="contact__inf-work">
+                                <p class="contact__work-text">Режим работы</p>
+                                <p class="contact__date-text">Пн-вс с 10:00 до 21:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact__map">
+                        <h4 class="contact__head">На карте</h4>
+                        <div class="contact__map-wrapp">
+                            <iframe class="contact__map-iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9095780.198185494!2d30.601622966880058!3d51.3369717947832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4127a09f63ab0f8b%3A0x2d4c18681aa4be0a!2z0KXQsNGA0YzQutC-0LIsINCl0LDRgNGM0LrQvtCy0YHQutCw0Y8g0L7QsdC70LDRgdGC0Yw!5e0!3m2!1sru!2sua!4v1640096470247!5m2!1sru!2sua" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                        <div class="contact__form-box">
+                            <h4 class="contact__head">Связаться с нами</h4>
+                            <form method="POST" class="contact__form">
+                            {% csrf_token %}
+<!--                            {{ fead_back_form.as_p }}-->
+                                <div class="contact__input-mask far fa-user">
+                                    <input name="name" type="text" class="contact__input" placeholder="Имя">
+                                </div>
+                                <div class="contact__input-mask  fas fa-phone-alt">
+                                    <input name="phone" type="tel" class="contact__input" placeholder="Телефон">
+                                </div>
+                                <textarea name="message" class="contact__textarea" cols="30" rows="10" placeholder="Напишите нам"></textarea>
+                                <button type="submit" class="contact__submit">Отправить</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

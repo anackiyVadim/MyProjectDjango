@@ -1,0 +1,11 @@
+{% extends "firstApp/base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Спасибо</h1>
+    <p>Ваш заказ был оформлен успешно. Номер вашего заказа.
+        <strong>{{ order.id }}</strong>.</p>
+    <p>
+        С вами свяжется наш менеджер для уточнения деталей заказа
+    </p>
+</div>
+{% endblock %}

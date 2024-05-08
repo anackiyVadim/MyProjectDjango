@@ -1,0 +1,50 @@
+{% extends "firstApp/base.html" %}
+{% block content %}
+<div class="container">
+    <style>
+        .order-form{
+            max-width: 600px;
+        }
+        .input-group{
+            margin-bottom: 10px;
+            grid-gap: 10px;
+        }
+    </style>
+    <h1>Заявка:</h1>
+    <div class="d-flex">
+        <div class="p-2 w-100">
+            <form action="." method="POST" class="order-form">
+                {% csrf_token %}
+<!--                {{ form.as_p }}-->
+                    <div class="input-group flex-nowrap">
+                        <input name="first_name" type="text" class="form-control" placeholder="Имя">
+                        <input name="last_name" type="text" class="form-control" placeholder="Фамилия">
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <input name="email" type="email" class="form-control" placeholder="email">
+                    </div>
+                    <div class="input-group flex-nowrap">
+                        <input name="address" type="text" class="form-control" placeholder="Адрес">
+                        <input name="postal_code" type="text" class="form-control" placeholder="Почтовый индекс">
+                        <input name="city" type="text" class="form-control" placeholder="Город">
+                    </div>
+                <button type="submit" class="btn btn-success">Разместить заказ</button>
+            </form>
+        </div>
+        <div class="p-2 flex-shrink-1">
+            <div class="order-info card">
+            <h3 class="card-header">Ваш заказ</h3>
+            <ul class="list-group">
+                {% for item in cart %}
+                    <li class="list-group-item card-text">
+                        {{ item.quantity }}x {{ item.product.name }}
+                        <p class="text-end">${{ item.total_price }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p>Всего: ${{ cart.get_total_price }}</p>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

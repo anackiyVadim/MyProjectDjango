@@ -1,0 +1,20 @@
+{% extends "firstApp/base.html" %}
+
+{% block content%}
+
+
+<div class="container">
+    <div class="col-lg">
+        <h1>{{newsPosts.title}}</h1>
+        <hr>
+        <p>Дата добавления новости: <b>{{ newsPosts.published_date }}</b>
+        </p>
+        <hr>
+        <img class="img-responsive" src="{{ newsPosts.image.url }}">
+        <hr>
+        <p class="lead">{{ newsPosts.disc }}</p>
+        <p>{{ newsPosts.disc }}</p>
+        <hr>
+    </div>
+</div>
+{% endblock %}

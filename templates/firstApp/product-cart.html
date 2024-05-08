@@ -1,0 +1,206 @@
+{% extends "firstApp/base.html" %}
+{% block content%}
+<style>
+.product-cart__slider-wrapp {
+    left: 120px;
+}
+.product-cart__reviews-inner-user {
+    margin-bottom: 20px;
+}
+</style>
+        <section class="product-cart">
+            <div class="container">
+                <h3 class="product-cart__head">{{ product.name }}</h3>
+                <div class="product-cart__first-box">
+                    <div width="100px" class="product-cart__slider-nav-wrapp">
+                        <div class="product-cart__slider-nav">
+                        {% for imgs in product.imagesDescr.all %}
+                            <div width="100px" class="product-cart__slider-img">
+                                <img width="100px" src="{{ imgs.images.url }}" alt="images" class="product-cart__nav-img">
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="product-cart__slider-wrapp">
+                        <div class="product-cart__slider">
+                            {% for imgs in product.imagesDescr.all %}
+                            <div width="300px" class="product-cart__slider-img">
+                                <img src="{{ imgs.images.url }}" alt="images" class="product-cart__images">
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="product-cart__inf">
+                        <span class="product-cart__inf-other-text">Доставка и пукнты выдачи</span>
+                        <div class="product-cart__inf-price-box">
+                            <span class="product-cart__inf-price">{{ product.newPrice }} $</span>
+                        {% if product.sale > 0 %}
+                            <span class="product-cart__inf-old-price">{{ product.price }} $</span>
+                            <div class="product-cart__sale-box">
+                                <p class="product-cart__sale-perc">{{ product.sale }}%</p>
+                                <p class="product-cart__sale-numb">{{ product.differencePrice }} $</p>
+                            </div>
+                        {% endif %}
+                        </div>
+                        <span class="product-cart__marc fas fa-truck">Доставка — 1 $ </span>
+                        <p class="product-cart__inf-text">11 июня (послезавтра)</p>
+                        <span class="product-cart__marc fas fa-map-marker-alt">Пункты выдачи — 1 $ </span>
+                        <p class="product-cart__inf-text">12 июня (сб)</p>
+                        <span class="product-cart__marc far fa-credit-card">Оплата</span>
+                        <p class="product-cart__inf-text">-Онлайн</p>
+                        <p class="product-cart__inf-text">-При получении</p>
+                        <form action="{% url 'baskCart:cart_add' product.id %}" method="POST">
+                            {{ cart_product_form }}
+                            {% csrf_token %}
+                            <button type="submit" class="product-cart__btn-bask sells__cart-inbask">В корзину</button>
+                        </form>
+                    {% if user.is_authenticated %}
+                        {% if is_favorite %}
+                        <form method="POST" action="{% url 'remove_favorite' id=product.id %}">
+                            {% csrf_token %}
+                            {{ form_Favorite.as_p }}
+                            <button type="submit" class="product-cart__btn-bask sells__cart-inbask">Убрать из избранного</button>
+                        </form>
+                        {% else %}
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form_Favorite.as_p }}
+                            <button type="submit" class="product-cart__btn-bask sells__cart-inbask">В избранное</button>
+                        </form>
+                        {% endif %}
+                    {% endif %}
+
+                    </div>
+                </div>
+                <div class="product-cart">
+                    <h3 class="product-cart__head fas fa-chevron-down">Описание</h3>
+                    <p class="product-cart__description-text">{{ product.descriptions }}</p>
+                </div>
+                <div class="product-cart">
+                    <h3 class="product-cart__head fas fa-chevron-down">Характеристики</h3>
+                    <div class="product-cart__specification">
+                        <div class="product-cart__specification-wrapp">
+                            <h4 class="product-cart__specification-head">Корпус</h4>
+                            <div class="product-cart__specification-inf">
+                                <p class="product-cart__specification-text-1">Пол:</p>
+                                <p class="product-cart__specification-text-2">мужской</p>
+                                <p class="product-cart__specification-text-1">Максимальная нагрузка, в килограммах:</p>
+                                <p class="product-cart__specification-text-2">120</p>
+                                <p class="product-cart__specification-text-1">Суммарная мощность электродвигателей, в ваттах:</p>
+                                <p class="product-cart__specification-text-2">700</p>
+                                <p class="product-cart__specification-text-1">Максимальная скорость, в километрах в час:</p>
+                                <p class="product-cart__specification-text-2">15</p>
+                            </div>
+                        </div>
+                        <div class="product-cart__specification-wrapp">
+                            <h4 class="product-cart__specification-head">Корпус</h4>
+                            <div class="product-cart__specification-inf">
+                                <p class="product-cart__specification-text-1">Пол:</p>
+                                <p class="product-cart__specification-text-2">мужской</p>
+                                <p class="product-cart__specification-text-1">Максимальная нагрузка, в килограммах:</p>
+                                <p class="product-cart__specification-text-2">120</p>
+                                <p class="product-cart__specification-text-1">Суммарная мощность электродвигателей, в ваттах:</p>
+                                <p class="product-cart__specification-text-2">700</p>
+                                <p class="product-cart__specification-text-1">Максимальная скорость, в километрах в час:</p>
+                                <p class="product-cart__specification-text-2">15</p>
+                            </div>
+                        </div>
+                        <div class="product-cart__specification-wrapp">
+                            <h4 class="product-cart__specification-head">Аккумулятор</h4>
+                            <div class="product-cart__specification-inf">
+                                <p class="product-cart__specification-text-1">Пол:</p>
+                                <p class="product-cart__specification-text-2">мужской</p>
+                                <p class="product-cart__specification-text-1">Максимальная нагрузка, в килограммах:</p>
+                                <p class="product-cart__specification-text-2">120</p>
+                                <p class="product-cart__specification-text-1">Суммарная мощность электродвигателей, в ваттах:</p>
+                                <p class="product-cart__specification-text-2">700</p>
+                                <p class="product-cart__specification-text-1">Максимальная скорость, в километрах в час:</p>
+                                <p class="product-cart__specification-text-2">15</p>
+                            </div>
+                        </div>
+                        <div class="product-cart__specification-wrapp">
+                            <h4 class="product-cart__specification-head">Аккумулятор</h4>
+                            <div class="product-cart__specification-inf">
+                                <p class="product-cart__specification-text-1">Пол:</p>
+                                <p class="product-cart__specification-text-2">мужской</p>
+                                <p class="product-cart__specification-text-1">Максимальная нагрузка, в килограммах:</p>
+                                <p class="product-cart__specification-text-2">120</p>
+                                <p class="product-cart__specification-text-1">Суммарная мощность электродвигателей, в ваттах:</p>
+                                <p class="product-cart__specification-text-2">700</p>
+                                <p class="product-cart__specification-text-1">Максимальная скорость, в километрах в час:</p>
+                                <p class="product-cart__specification-text-2">15</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-cart product-cart__sells">
+                    <h3 class="product-cart__head">Похожие товары</h3>
+                    <div class="sells__wrapp-product">
+                        {% for productGiro in productGiro %}
+                            {% if product.tegs == productGiro.tegs %}
+                                {% if forloop.counter <= 4 %}
+                                    {% include "firstApp/miniProductCart.html" %}
+                                {% endif %}
+                            {% endif %}
+                       {% endfor %}
+                    </div>
+                </div>
+                <div class="product-cart">
+                    <div class="product-cart__reviews-box-top">
+                        <h3 class="product-cart__head product-cart__head-reviews fas fa-chevron-down">Отзывы</h3>
+<!--                        <div class="product-cart__reviews-box-btn">-->
+<!--                            <button class="product-cart__reviews-btn-one">Оставить отзыв</button>-->
+<!--                            <button class="product-cart__reviews-btn-two">Все отзывы</button>-->
+<!--                        </div>-->
+                    </div>
+                {% if user.is_authenticated %}
+
+                    <div class="well">
+                        <h4>Оставить отзыв:</h4>
+                        <form role="form" method="POST" action="{% url 'productCart' id=product.id name=product.name %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <textarea required name="commentText" class="form-control" rows="3"></textarea>
+                            </div>
+                            <button type="submit" value="save" class="btn btn-primary">отзыв</button>
+                        </form>
+                    </div>
+                {% endif %}
+
+                    <hr>
+                    <div class="product-cart__reviews-box-wrapp">
+                        <div class="product-cart__reviews-inner">
+                            {% for comment in comment %}
+                                <div class="product-cart__reviews-inner-user">
+                                    <img class="media-object" src="{{ comment.user.profile.avatar.url }}" alt="" width="50px">
+                                    <div class="product-cart__reviews-user-name">
+                                        <p class="product-cart__reviews-user-name-text">{{ comment.user.username }}</p>
+                                    </div>
+                                    <div class="product-cart__reviews-user-date-box">
+                                        <span class="product-cart__reviews-user-date">{{ comment.published_date }}</span>
+                                    </div>
+                                    <div class="product-cart__reviews-user-grade-box">
+                                        <span class="product-cart__reviews-user-grade-text">Оценка: </span>
+                                        <div class="product-cart__reviews-user-grade-wrapp">
+                                            <div class="product-cart__reviews-user-grade fas fa-star"></div>
+                                            <div class="product-cart__reviews-user-grade fas fa-star"></div>
+                                            <div class="product-cart__reviews-user-grade fas fa-star"></div>
+                                            <div class="product-cart__reviews-user-grade fas fa-star"></div>
+                                            <div class="product-cart__reviews-user-grade fas fa-star"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-cart__reviews-content">
+                                    <div class="product-cart__reviews-content-box">
+                                        <span class="product-cart__reviews-span">{{ comment.commentText }}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}
+

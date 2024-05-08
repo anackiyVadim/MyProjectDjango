@@ -1,0 +1,19 @@
+{% extends "firstApp/base.html" %}
+
+{% block content%}
+            <div class="container">
+                <h3 class="reg__head">Корзина</h3>
+
+                                {% for productGiro in productGiro %}
+                                    {% for featured in featuredProducts %}
+                                        {% if productGiro == featured.featuredProducts_Product %}
+                                            {% if user_Info == featured.featuredProducts_User %}
+                                                {% include "firstApp/miniProductCart.html" %}
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+
+            </div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<article class="sells__cart-product">
+    <div class="sells__cart-box-img">
+        <img class="sells__cart-images" src="{{ productGiro.images.url }}" alt="">
+    </div>
+    <div class="sells__cart-inf">
+        <a class="sells__cart-category" href="{% url 'catalog' name=productGiro.tegs %}">{{ productGiro.tegs }}</a>
+        <a class="sells__cart-name" href="{% url 'productCart' id=productGiro.pk name=productGiro.name %}">{{ productGiro.name }}</a>
+        <div class="sells__cart-wrapp-old-price">
+            {% if productGiro.sale > 0 %}
+            <p class="sells__cart-old-prise">{{ productGiro.price }} $</p>
+            <div class="sells__cart-inner-old-price">
+                <p class="sells__cart-inter">{{ productGiro.sale }}%</p>
+                <p class="sells__cart-sale">{{ productGiro.differencePrice }}$</p>
+            </div>
+            {% endif %}
+            <div class="sells__cart-box-price-grade">
+                {% if productGiro.newPrice > 0 %}
+                <span class="sells__cart-price">{{ productGiro.newPrice }} $</span>
+                {% else %}
+                <span class="sells__cart-price">{{ productGiro.price }} $</span>
+                {% endif %}
+                <div class="sells__cart-box-grade" data-total-value="{{ productGiro.rayting }}">
+                    <button class="sells__cart-grade fas fa-star" data-item-value="5"></button>
+                    <button class="sells__cart-grade fas fa-star" data-item-value="4"></button>
+                    <button class="sells__cart-grade fas fa-star" data-item-value="3"></button>
+                    <button class="sells__cart-grade fas fa-star" data-item-value="2"></button>
+                    <button class="sells__cart-grade fas fa-star" data-item-value="1"></button>
+                    <span class="sells__cart-count">(67)</span>
+                </div>
+            </div>
+            <form action="{% url 'baskCart:cart_add' productGiro.id %}" method="POST">
+                {% csrf_token %}
+                <input type="number" hidden="hidden" name="quantity" value="1" min="1">
+                <button type="submit" class="sells__cart-inbask">В корзину</button>
+            </form>
+        </div>
+    </div>
+</article>
