@@ -1,0 +1,55 @@
+.main-menu{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    &__btn{
+        background: inherit;
+        border: none;
+        color: rgb(226, 148, 45);
+        transition: 0.5s;
+        font-size: 36px;
+        position: relative;
+        &:hover{
+            color: rgb(150, 160, 20);
+            transition: 0.5s;
+        }
+        &:hover > div{
+            transition: 0.5s;
+            display: block;
+            opacity: 1;
+        }
+    }
+    &__wrapp{
+        display: none;
+        max-width: 300px;
+        position: absolute;
+        left: 0;
+        transition: 0.5s;
+        opacity: 0;
+        background: rgb(#000, 0.75);
+        padding: 10px;
+        color: #FFF;
+        border-radius: 15px;
+        box-shadow: 10px 5px 5px rgb(187, 186, 186);
+    }
+    &__head{
+        display: block;
+        font-size: 18px;
+        line-height: 20px;
+        margin-bottom: 25px;
+    }
+    &__span{
+        font-size: 16px;
+        line-height: 18px;
+        margin-bottom: 6px;
+        display: block;
+    }
+    &__link{
+        font-size: 14px;
+        display: block;
+        margin-bottom: 2px;
+        line-height: 16px;
+        color: rgb(191, 204, 14)
+    }
+}

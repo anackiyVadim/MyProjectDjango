@@ -1,0 +1,255 @@
+.account{
+
+    &__head{
+        font-size: 36px;
+        line-height: 36px;
+        @extend %plex-fw5;
+        color: #23242D;
+        margin-bottom: 30px;
+    }
+    &__wrapp{
+        display: flex;
+    }
+    &__nav-bar{
+        margin-right: 117px;
+        max-width: 319px;
+        width: 100%;
+    }
+    &__btn{
+        border: none;
+        font-size: 17px;
+        line-height: 17px;
+        @extend %source-fw4;
+        padding: 20px 18.5px;
+        width: 100%;
+        transition: 0.3s;
+        text-align: left;
+        &:hover{
+            background: #323C92;
+            color: #FFF;
+            transition: 0.3s;
+        }
+    }
+    &__btn-active{
+        background: #323C92;
+        color: #FFF;
+        transition: 0.3s;
+        border: 1px solid #323C92;
+        &:hover{
+            background: #FFF;
+            transition: 0.3s;
+            color: #000;
+            border: 1px solid #323C92;
+        }
+    }
+    &__active-wrapp{
+            display: block !important;
+    }
+    &__general,
+    &__personal,
+    &__history,
+    &__password,
+    &__order{
+            display: none;
+    }
+    &__general-name{
+        font-size: 24px;
+        line-height: 31px;
+        @extend %plex-fw5;
+        margin-bottom: 30px;
+    }
+    &__general-top-box{
+        display: flex;
+        margin-bottom: 20px;
+        align-items: center;
+    }
+    &__general-images{
+        margin-right: 30px;
+    }
+    &__general-date,
+    &__general-orders{
+        font-size: 17px;
+        line-height: 21px;
+        @extend %source-fw4;    
+    }
+    &__general-date{
+        display: block;
+        margin-bottom: 10px;
+    }
+    &__general-text{
+        font-size: 17px;
+        line-height: 22px;
+        @extend %source-fw4;
+        margin-bottom: 30px;
+        width: 100%;
+        max-width: 537px;
+    }
+    &__general-controlPanel{
+        padding: 17px 86px;
+        border: 1px solid #FFF;
+        background: #323c92;
+        color: #FFF;
+        border-radius: 5px;
+        font-size: 16px;
+        line-height: 20px;
+        @extend %source-fw6;
+        &:hover{
+            border: 1px solid #323c92;
+            background: #FFF;
+            color: #000;
+        }
+    }
+    &__personal-form{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 8px;
+        align-items: center;
+        margin-bottom: 60px;
+    }
+    &__personal-text{
+        font-size: 15px;
+        line-height: 18px;
+        color: #828282;
+        margin-bottom: 5px;
+    }
+    &__personal-input{
+        width: 100%;
+        max-width: 319px;
+        padding: 17.5px 20px;
+        border: none;
+        font-size: 15px;
+        line-height: 18px;
+        @extend %source-fw4;
+    }
+    &__personal-submit{
+        width: 100%;
+        max-width: 319px;
+        padding: 17px 20px;
+        border: none;
+        background: #323C92;
+        border-radius: 5px;
+        color: #FFF;
+        font-size: 16px;
+        line-height: 20px;
+        @extend %source-fw6;
+        transition: 0.5s;
+        // border: 1px solid inherit;
+        margin-top: 20px;
+        &:hover{
+            background: #FFF;
+            color: #323C92;
+            border: 1px solid #323C92;
+            transition: 0.5s;
+        }
+    }
+    &__history-head{
+        font-size: 24px;
+        line-height: 31px;
+        @extend %plex-fw5;
+        margin-bottom: 20px;
+    }
+    &__history-inner-box{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        padding: 20px 30px;
+    }
+    &__history-p{
+        margin-right: 50px;
+        font-size: 17px;
+        line-height: 21px;
+        @extend %source-fw4;
+    }
+    &__history-p > span{
+        @extend %source-fw6;
+    }
+    &__history-progress{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__history-progress-treat{
+        font-size: 17px;
+        line-height: 21px;
+        @extend %source-fw4;
+        color:  #F39500;
+    }
+    &__history-progress-completed{
+        font-size: 17px;
+        line-height: 21px;
+        @extend %source-fw4;
+       color: #32996E; 
+    }
+    &__history-progress-treat-list-inner,
+    &__history-progress-completed-list-inner{
+        position: absolute;
+        background: #fff;
+        width: 150px;
+        left: -70px;
+        z-index: 2;
+        display: none;
+        transition: 0.3s;
+    }
+    
+    &__history-progress-completed-list,
+    &__history-progress-treat-list{
+        position: relative;
+    }
+    &__history-progress-completed-list:hover > li > ul,
+    &__history-progress-treat-list:hover > li > ul{
+        transition: 0.3s;
+        display: block;
+    }
+    &__history-progress-treat-link,
+    &__history-progress-completed-link{
+        font-size: 14px;
+        line-height: 18px;
+        color: #000;
+        @extend %plex-fw7;
+    }
+    &__order-wrapp-product{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 4px;
+    }
+    &__password-wrapp{
+        position: relative;
+        margin-bottom: 8px;
+    }
+    &__password-wrapp-1{
+        margin-bottom: 16px;
+    }
+    &__password-icon{
+        position: absolute;
+        top: 15px;
+        left: 20px;
+        color: #323C92;
+        font-size: 24px;
+    }
+    &__password-input{
+        padding: 17.5px 54px;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        line-height: 19px;
+        @extend %source-fw4;
+        width: 100%;
+        max-width: 319px;
+    }
+    &__password-submit{
+        background: #323C92;
+        color: #fff;
+        font-size: 16px;
+        line-height: 20px;
+        @extend %source-fw6;
+        border: 1px solid #FFF;
+        padding: 17px 120px;
+        transition: 0.4s;
+        &:hover{
+            background: #FFF;
+            color: #323C92;
+            border: 1px solid #323C92;
+            transition: 0.4s;
+        }
+    }
+}

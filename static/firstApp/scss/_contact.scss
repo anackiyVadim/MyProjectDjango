@@ -1,0 +1,129 @@
+.contact{
+    margin-bottom: 60px;
+    &__content{
+        justify-content: space-between;
+        display: flex;
+    }
+    &__head{
+        font-size: 36px;
+        line-height: 36px;
+        @extend %plex-fw5;
+        margin-bottom: 30px;
+    }
+    &__inf-content{
+        padding: 32px;
+    }
+    &__tell,
+    &__mail,
+    &__inf-adress,
+    &__inf-text{
+        position: relative;
+        padding-left: 34px;
+        &::before{
+            position: absolute;
+            left: 0;
+        }
+    }
+    &__tell{
+        font-size: 24px;
+        line-height: 24px;
+        color: #323C92;
+        @extend %plex-fw5;
+        display: block !important;
+        margin-bottom: 10px;
+
+    }
+    &__mail{
+        color: #323C92;
+        margin-top: 12px;
+        font-size: 17px;
+        line-height: 17px;
+        margin-bottom: 5px;
+        display: block !important;
+        @extend %source-fw4;
+    }
+    &__inf-adress{
+        margin-top: 20px;
+        font-size: 20px;
+        margin-bottom: 10px;
+        line-height: 20px;
+        @extend %source-fw6;
+    }
+    &__inf-text{
+        font-size: 17px;
+        line-height: 17px;
+        @extend %source-fw4;
+    }
+    &__inf-work{
+        margin-top: 68px;
+    }
+    &__work-text{
+        font-size: 16px;
+        line-height: 16px;
+        @extend %source-fw4;
+        margin-bottom: 10px;
+    }
+    &__date-text{
+        font-size: 20px;
+        line-height: 20px;
+        @extend %source-fw6;
+    }
+    &__map-iframe{
+        max-width: 646px;
+        width: 100%;
+        margin-bottom: 60px;
+    }
+    &__form{
+        display: grid;
+        grid-gap: 8px;
+        grid-template-columns: 1fr 1fr;
+    }
+    &__input-mask{
+        display: inline-block;
+        position: relative;
+        &::before{
+            position: absolute;
+            left: 22px;
+            top: 15px;
+            font-size: 19px;
+            color: #323c92;
+        }
+    }
+    &__input{
+        border-radius: 5px;
+        border: none;
+        padding-left: 54px;
+        width: 100%;
+        padding-top: 17px;
+        padding-bottom: 17px;
+        background: rgb(236, 232, 232);
+
+    }
+    &__textarea{
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        background: rgb(236, 232, 232);
+        margin-top: 8px;
+        border-radius: 5px;
+        border: none;
+        padding: 17px 20px;
+        margin-bottom: 8px;
+        display: block;
+        height: 54px;
+        width: 100%;
+    }
+    &__submit{
+        max-width: 319px;
+        width: 100%;
+        border: none;
+        background: #323C92;
+        border-radius: 5px;
+        padding: 17px 0;
+        color: #FFF;
+        font-size: 16px;
+        line-height: 20px;
+        @extend %source-fw6;
+    }
+}

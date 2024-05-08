@@ -1,0 +1,247 @@
+.product-cart{
+    &__head{
+        font-size: 36px;
+        line-height: 36px;
+        margin-bottom: 50px;
+        @extend %plex-fw5;
+        &::before{
+            font-size: 0;
+        }
+    }
+    &__slider > .slick-dots{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0;
+    }
+    &__slider > .slick-dots > .slick-active > button{
+        background: #D33F49;
+    }
+    &__slider > .slick-dots > li{
+        max-width: 156px;
+        margin-left: 2px;
+        margin-right: 2px;        
+        width: 100%;
+    }
+    &__slider > .slick-dots > li > button{
+        width: 100%;
+        border: none;
+        background: #F2F3F5;
+        height: 4px;
+    }
+    &__first-box{
+        position: relative;
+        height: 493px;
+    }
+    &__slider-nav-wrapp{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &__slider-wrapp{
+        top: 0; 
+        left: 100px;
+        width: 100%;
+        max-width: 461px;
+        position: absolute;
+    }
+    // +++++++++++++++++++++
+    &__inf{
+        position: absolute;
+        top: 0;
+        right: 10%;
+    }
+    &__inf-other-text{
+        @extend %source-fw6;
+        color: #323C92;
+        font-size: 15px;
+        line-height: 15px;
+    }
+    &__inf-price-box{
+        margin-top: 20px;
+    }
+    &__inf-price{
+        font-size: 24px;
+        line-height: 31px;
+        @extend %plex-fw7;
+    }
+    &__inf-old-price{
+        @extend %source-fw4;
+        font-size: 15px;
+        line-height: 19px;
+        color: #828282;
+        text-decoration: line-through;
+    }
+    &__sale-box{
+        background: #FFDD4A;
+        border-radius: 14px;
+        width: 100%;
+        max-width: 90px;
+        display: flex;
+        padding: 3px 8px;
+        font-size: 14px;
+        line-height: 18px;
+        @extend %source-fw4;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+    &__sale-perc{
+        background: #F2F3F5;
+        border-radius: 23px;
+        padding: 0px 4px;
+        margin-right: 2px;
+    }
+    &__marc{
+        margin-bottom: 4px;
+        display: block;
+        padding-left: 42px;
+        font-size: 15px;
+        line-height: 15px;
+        @extend %source-fw6;
+        color: #323C92;
+        position: relative;
+        &::before{
+            position: absolute;
+            left: 10px;
+        }
+    }
+    &__inf-text{
+        @extend %source-fw4;
+        font-size: 13px;
+        line-height: 13px;
+        color: #BBBBBB;
+        display: block;
+        padding-left: 42px;
+        margin-bottom: 10px;
+    }
+    &__btn-bask{
+        margin-top: 20px;
+        border: none;
+        background: #323C92;
+        color: #fff;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        text-align: center;
+        max-width: 259px;
+        width: 100%;
+        border-radius: 5px;
+    }
+    &__description-text{
+        font-size: 15px;
+        line-height: 19px;
+        @extend %source-fw4;
+        margin-bottom: 40px;
+    }
+    &__specification{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    &__specification-head{
+        font-size: 20px;
+        line-height: 20px;
+        color: #323C92;
+        margin-bottom: 26px;
+        margin-top: 5px;
+        @extend %source-fw6;
+    }
+    &__specification-inf{
+        display: grid;
+        grid-template-columns: 1fr 0.5fr;
+    }
+    &__specification-text-1,
+    &__specification-text-2{
+        color: #828282;
+        font-size: 17px;
+        line-height: 17px;
+        @extend %source-fw4;
+        margin-bottom: 20px;
+    }
+    &__specification-text-2{
+        color: #23242D;
+    }
+    &__reviews-box-wrapp{
+        margin-bottom: 60px;
+    }
+    &__reviews-box-top{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    &__reviews-box-btn{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    &__reviews-btn-one,
+    &__reviews-btn-two{
+        max-width: 196px;
+        width: 100%;
+        border: none;
+        background: #323C92;
+        padding: 12px 38px;
+        color: #FFF;
+        font-size: 17px;
+        line-height: 22px;
+        @extend %source-fw6;
+        text-align: center;
+    }
+    &__reviews-btn-two{
+        background: #FFF;
+        color: #23242D;
+        margin-left: 9px;
+        border: 1px solid #323C92;
+    }
+    &__reviews-inner-user{
+        position: relative;
+    }
+    &__reviews-user-icon-box{
+        background: #C4C4C4;
+        border-radius: 100%;
+        width: 50px;
+        margin-bottom: 31px;
+        height: 50px;
+        padding: 14px 17px;
+        font-size: 21px;
+        @extend %source-fw4;
+        line-height: 21px;
+        text-transform: uppercase;
+    }
+    &__reviews-user-name,
+    &__reviews-user-date-box,
+    &__reviews-user-grade-box{
+        font-size: 17px;
+        line-height: 17px;
+        @extend %source-fw4;
+    }
+    &__reviews-user-name{
+        position: absolute;
+        top: 0;
+        left: 70px;
+    }
+    &__reviews-user-date-box{
+        position: absolute;
+        left: 140px;
+        top: 0;
+    }
+    &__reviews-user-grade-box{
+        top: 27px;
+        left: 70px;
+        position: absolute;
+        display: inline-flex;
+    }
+    &__reviews-user-grade{
+        &::before{
+            color: #b1b1b1;
+        }
+    }
+    &__reviews-content-box{
+        margin-bottom: 20px;
+        font-size: 17px;
+        line-height: 17px;
+        @extend %source-fw4;
+        color: #000;
+    }
+    &__reviews-span{
+        display: block;
+        margin-bottom: 10px;
+    }
+}

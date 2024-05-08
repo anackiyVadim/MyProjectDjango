@@ -1,0 +1,55 @@
+.reg{
+    &__wrapp{
+        position: relative;
+    }
+    &__head{
+        font-size: 36px;
+        line-height: 36px;
+        @extend %plex-fw5;
+    }
+    &__form{
+        margin-top: 41px;
+        display: grid;
+        position: absolute;
+        left: 0;
+        grid-gap: 16px;
+        grid-template-columns: 1fr 1fr;
+    }
+    &__input-mask{
+        min-width: 319px;
+        width: 100%;
+        position: relative;
+        &::before{
+            top: 13px;
+            left: 22px;
+            position: absolute;
+            color: #323C92;
+            font-size: 24px;
+        }
+    }
+    &__input,
+    &__submit{
+        max-width: 319px;
+        width: 100%;
+    }
+    &__input{
+        padding-top: 18px;
+        padding-bottom: 18px;
+        padding-left: 54px;
+        border: none;
+        font-size: 15px;
+        line-height: 18px;
+        @extend %source-fw4;
+    }
+    &__submit{
+        border: none;
+        background: #323C92;
+        border-radius: 5px;
+        color: #FFF;
+        font-size: 16px;
+        line-height: 20px;
+        @extend %plex-fw7;
+        padding-top: 16px;
+        padding-bottom: 16px;
+    }
+}

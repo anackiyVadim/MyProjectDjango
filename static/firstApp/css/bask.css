@@ -1,0 +1,9 @@
+.news__content-images {
+    width: 100%;
+    height: 200px;
+}
+.header__nav-link:hover,
+.header__come--register:hover,
+.header__come:hover{
+    color: #fff;
+}
